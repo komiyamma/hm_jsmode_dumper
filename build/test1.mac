@@ -1,0 +1,39 @@
+﻿
+execjs currentmacrodirectory + @"\stringify.js";
+
+js {
+
+    var obj = {
+        a:3,
+        b:"abc",
+        e : {
+            f : 3,
+            g : function(a) { /* あ
+    　いう     */
+            }
+        }
+    };
+
+    function output_stringify(obj) {
+        debuginfo(2);
+        console.log(stringify(obj));
+    }
+
+    output_stringify(obj);
+    output_stringify({});
+    output_stringify(lineno);
+    output_stringify(lineno());
+    output_stringify(null);
+    output_stringify(undefined);
+    output_stringify("345");
+    output_stringify(true);
+
+    var obj3 = {
+        f : obj3
+    }
+
+    output_stringify(obj3);
+
+    // output_stringify(hidemaruGlobal);
+
+}
