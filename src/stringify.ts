@@ -1,15 +1,16 @@
-/// <reference path="../types/hm_jsmode.d.ts" />
-
-/*
+/*!
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  */
 
-/*
+/*!
+ * stringify v1.0.0
+ *
  * stringify関数は、JavaScriptの各種オブジェクトや関数等を文字列化したものを取得する関数です。    
  * PHPのvar_dumpなどに近いでしょう。     
  * JSON.stringify とは異なるため注意してください。     
  */
+
 
 declare var module: any
 declare var stringify: (obj: any) => string;

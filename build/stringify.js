@@ -1,4 +1,7 @@
-/// <reference path="../types/hm_jsmode.d.ts" />
+/*
+ * Copyright (C) 2022 Akitsugu Komiyama
+ * under the MIT License
+ */
 function __stringify_helper__(obj, level) {
     var dumped_text = "";
     if (!level)
@@ -6,7 +9,7 @@ function __stringify_helper__(obj, level) {
     var level_padding = "";
     for (var j = 0; j < level + 1; j++)
         level_padding += "  ";
-    if (level >= 1)
+    if (level >= 10)
         return level_padding + "..."; // スタックが深すぎる
     if (typeof (obj) == 'object') {
         for (var item in obj) {
