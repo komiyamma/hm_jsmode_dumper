@@ -1,4 +1,4 @@
-# 秀丸マクロ jsmode 用の require 関数
+# 秀丸マクロ jsmode 用の「JavaScript変数の内容を文字列にする」関数 stringify
 
 ![stringify v1.0.0](https://img.shields.io/badge/stringify-v1.0.0-6479ff.svg)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
