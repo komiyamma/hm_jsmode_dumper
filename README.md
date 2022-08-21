@@ -1,0 +1,2 @@
+# hm_jsmode_stringify
+秀丸エディタのjsmode用のstringify関数 (JSON.stringifyではなく、ユーザー定義のオブジェクトメソッドなども表示するもの)
