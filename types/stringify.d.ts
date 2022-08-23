@@ -30,7 +30,7 @@ import { dir } from "../build/stringify";
  * @returns
  * 指定のオブジェクトや値を文字列化したもの
  */
-declare function stringify(obj: any, space: number|string): string;
+declare function stringify(obj: any, space: number|string = 2): string;
 
 
 /**
@@ -54,5 +54,5 @@ declare function stringify(obj: any, space: number|string): string;
  * なし
  */
  declare namespace stringify {
-    function dir(obj: any, space: number|string): void;
+    function dir(obj: any, space: number|string = 2): void;
 }

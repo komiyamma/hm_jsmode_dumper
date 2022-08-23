@@ -25,18 +25,16 @@
         return val;
     }
     function _stringify(obj, space) {
-        if (space === void 0) {
-            space = 2;
-        }
-        var dumped_text = "";
+        if (space === void 0) { space = 2; }
+        var text = "";
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;
         }
-        var dumped_text = JSON.stringify(obj, replacer, space);
-        if (dumped_text) {
-            dumped_text = dumped_text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+        var text = JSON.stringify(obj, replacer, space);
+        if (text) {
+            text = text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
         }
-        return "[type: " + typeof (obj) + "]\r\n" + dumped_text + "\r\n";
+        return "[type: " + typeof (obj) + "]\r\n" + text + "\r\n";
     }
     function _dir(obj, space) {
         return console.log(_stringify(obj, space));

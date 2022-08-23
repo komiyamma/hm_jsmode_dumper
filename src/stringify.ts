@@ -35,21 +35,18 @@ declare var console: any;
          return val;
     }
 
-    function _stringify(obj: any, space: number|string): string|undefined {
-        if (space === void 0) {
-            space = 2;
-        }
-        var dumped_text: string = "";
+    function _stringify(obj: any, space: number|string = 2): string|undefined {
+        var text: string = "";
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;
         }
-        var dumped_text = JSON.stringify(obj, replacer, space);
+        var text = JSON.stringify(obj, replacer, space);
 
-        if (dumped_text) {
-            dumped_text = dumped_text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+        if (text) {
+            text = text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
         }
 
-        return "[type: " + typeof (obj) + "]\r\n" + dumped_text + "\r\n";
+        return "[type: " + typeof (obj) + "]\r\n" + text + "\r\n";
     }
 
     function _dir(obj: any, space: number|string) {
@@ -65,7 +62,7 @@ declare var console: any;
                 output("本モジュールとは異なるstringifyが、すでに定義されています。\r\n上書きします。\r\n");
             }
         }
-        
+
         stringify = _stringify;
         stringify.dir = _dir;
         stringify.guid = guid;
