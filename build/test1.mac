@@ -1,5 +1,12 @@
-﻿execjs macrodir + @"\jsmode_modules\dumper.js";
+﻿js {
+Dumper = {};
+
+}
+// execjsを使う利用方法
+execjs macrodir + @"\jsmode_modules\dumper\dumper.js";
 js {
+
+    debuginfo(2);
 
     var obj = {
         a:3,
@@ -12,9 +19,9 @@ js {
         }
     };
 
-    debuginfo(2);
-
     Dumper.dir(obj);
+
+    Dumper.dir(obj, 1);
 
     Dumper.dir({});
 
@@ -26,10 +33,12 @@ js {
 }
 
 
+// require.jsを使う利用方法
 execjs macrodir + @"\jsmode_modules\require.js";
 
 js {
     var Dumper = require("dumper");
+
     var o = Dumper.stringify(null);
     console.log(o);
 
@@ -37,9 +46,18 @@ js {
     Dumper.dir("345");
     Dumper.dir(true);
 
-    var obj3 = {
-        f : obj3
-    }
+    var obj = {
+        a:3,
+        b:"abc",
+        e : {
+            f : 3,
+            g : function(a) { /* あ
+    　いう     */
+            }
+        }
+    };
 
-    Dumper.dir(obj3);
+    Dumper.dir(obj, "■");
+
+    
 }
