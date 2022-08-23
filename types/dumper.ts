@@ -2,10 +2,10 @@
  * @file 秀丸のjsmode用のTypeScript定義ファイル
  * @author Akitsugu Komiyama
  * @license MIT
- * @version v1.0.2
+ * @version v1.0.3
  */
 
-declare namespace Dump {
+declare namespace Dumper {
     /**
      *
      * stringify関数は、JavaScriptの各種オブジェクトや関数等を文字列化したものを取得する関数です。    
@@ -20,6 +20,13 @@ declare namespace Dump {
      * インデントのスペース数。     
      * 文字列で指定した場合は、深度分が該当の文字列でインデントされる。
      * 
+     * @example
+     * execjs macrodir + @"\jsmode_modules\dumper\dumper.js";
+     * js {
+     *     var aaa = {"a":3, "b":function(){return 3;}};
+     *     var str_result = Dumper.stringify(aaa);
+     * }
+     * 
      * @see jsmode の stringify 関数
      * @link https://xn--pckzexbx21r8q9b.net/?page=nobu_tool_hm_jsmode_stringify
      * 
@@ -32,25 +39,34 @@ declare namespace Dump {
     declare function stringify(obj: any, space: number|string = 2): string;
 
 
-/**
- *
- * stringify 関数で文字列化したものを、console.log へと出力します。
- * 
- * @param obj
- * 文字列化したいオブジェクトや変数などを指定する
- * 
- * @param space
- * インデントのスペース数。     
- * 文字列で指定した場合は、深度分が該当の文字列でインデントされる。
- * 
- * @see jsmode の stringify 関数
- * @link https://xn--pckzexbx21r8q9b.net/?page=nobu_tool_hm_jsmode_stringify
- * 
- * @see JSON.stringify
- * @link https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
- *
- * @returns
- * なし
- */
+    /**
+     *
+     * stringify 関数で文字列化したものを、console.log へと出力します。    
+     * console.log がアウトプット枠にも出力するには、事前にdebuginfo(2);が必要です。
+     * 
+     * @param obj
+     * 文字列化したいオブジェクトや変数などを指定する
+     * 
+     * @param space
+     * インデントのスペース数。     
+     * 文字列で指定した場合は、深度分が該当の文字列でインデントされる。
+     * 
+     * @example
+     * execjs macrodir + @"\jsmode_modules\dumper\dumper.js";
+     * js {
+     *     debuginfo(2);
+     *     var aaa = {"a":3, "b":function(){return 3;}};
+     *     var str_result = Dumper.dir(aaa);
+     * }
+     * 
+     * @see jsmode の stringify 関数
+     * @link https://xn--pckzexbx21r8q9b.net/?page=nobu_tool_hm_jsmode_stringify
+     * 
+     * @see JSON.stringify
+     * @link https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+     *
+     * @returns
+     * なし
+     */
     function dir(obj: any, space: number|string = 2): void;
 }
