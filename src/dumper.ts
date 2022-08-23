@@ -6,7 +6,6 @@
  */
 
 declare var module: any
-declare var stringify: any;
 declare var console: any;
 declare var Dumper: { stringify: any, dir: any, guid: string };
 
