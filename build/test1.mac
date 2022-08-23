@@ -1,7 +1,4 @@
-﻿js {
-Dumper = {};
-
-}
+﻿
 // execjsを使う利用方法
 execjs macrodir + @"\jsmode_modules\dumper\dumper.js";
 js {
@@ -34,6 +31,7 @@ js {
 
 
 // require.jsを使う利用方法
+// https://xn--pckzexbx21r8q9b.net/?page=nobu_tool_hm_jsmode_require
 execjs macrodir + @"\jsmode_modules\require.js";
 
 js {
@@ -58,6 +56,4 @@ js {
     };
 
     Dumper.dir(obj, "■");
-
-    
 }
