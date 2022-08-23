@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * stringify v1.0.1
+ * stringify v1.0.2
  *
  * stringify関数は、JavaScriptの各種オブジェクトや関数等を文字列化したものを取得する関数です。    
  * PHPのvar_dumpなどに近いでしょう。     
@@ -13,10 +13,10 @@ declare var module: any
 declare var stringify: any;
 declare var console: any;
 
-(function() {
+(function () {
     var guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
     var _outputpane_dllobj = null;
-    function _output(msg) {
+    function _output(msg: string) {
         if (!_outputpane_dllobj) {
             _outputpane_dllobj = hidemaru.loadDll(hidemaruGlobal.hidemarudir() + "\\HmOutputPane.dll");
         }
@@ -26,22 +26,36 @@ declare var console: any;
         }
         return false;
     }
-    function __stringify_helper__(obj: any, level: number) {
+    function __stringify_helper__(obj: any, level: number, space: number|string) {
         var dumped_text: string = "";
         if (!level) level = 0;
 
         var level_padding: string = "";
-        for (var j = 0; j < level + 1; j++) level_padding += "  ";
+        for (var j = 0; j < level + 1; j++) {
+            if (typeof (space) == "number") {
+                for (var s = 0; s < space; s++) {
+                    level_padding += " ";
+                }
+            } else if (typeof (space) == "string") {
+                level_padding += space;
+            }
+        }
 
-        if (level >= 10) return level_padding + "..."; // スタックが深すぎる
+        if (level >= 10) {
+            return level_padding + "..."; // スタックが深すぎる
+        }
 
         if (typeof (obj) == 'object') {
             for (var item in obj) {
+
                 var value = obj[item];
 
-                if (typeof (value) == 'object') {
+                if (value === null) {
+                    dumped_text += level_padding + "\"" + item + "\" : (null),\n";
+                }
+                else if (typeof (value) == 'object') {
                     dumped_text += level_padding + "\"" + item + "\" :\n";
-                    var next_level_text: string = __stringify_helper__(value, level + 1);
+                    var next_level_text: string = __stringify_helper__(value, level + 1,);
                     if (next_level_text.length == 0) {
                         dumped_text += level_padding + "{},";
                     } else {
@@ -62,7 +76,10 @@ declare var console: any;
         return dumped_text;
     }
 
-    function __stringify__(obj: any) {
+    function __stringify__(obj: any, space: number|string) {
+        if (space === void 0) {
+            space = 2;
+        }
         var dumped_text: string = "";
         if (obj == null || obj == undefined) {
             if (typeof (obj) == "undefined") { // typeofで判定する
@@ -71,7 +88,7 @@ declare var console: any;
                 dumped_text = "(null)";
             }
         } else if (typeof (obj) == "object") {
-            dumped_text = __stringify_helper__(obj, 0);
+            dumped_text = __stringify_helper__(obj, 0, space);
             if (dumped_text.length == 0) {
                 dumped_text = "{}";
             } else {
@@ -89,11 +106,11 @@ declare var console: any;
         return "[type: " + typeof (obj) + "]\r\n" + dumped_text + "\r\n";
     }
 
-    function __dir__(obj: any) {
-        return console.log(__stringify__(obj));
+    function __dir__(obj: any, space: number|string) {
+        return console.log(__stringify__(obj, space));
     }
 
-    if (typeof(module) != 'undefined' && module.exports) {
+    if (typeof (module) != 'undefined' && module.exports) {
         module.exports.stringify = __stringify__;
         module.exports.dir = __dir__;
     } else {

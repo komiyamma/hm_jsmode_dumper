@@ -1,12 +1,5 @@
-﻿
-execjs currentmacrodirectory + @"\stringify.js";
-
+﻿execjs macrodir + @"\jsmode_modules\stringify.js";
 js {
-
-    function output_stringify(obj) {
-        debuginfo(2);
-        console.log(stringify(obj));
-    }
 
     var obj = {
         a:3,
@@ -19,21 +12,34 @@ js {
         }
     };
 
-    output_stringify(obj);
-    output_stringify({});
-    output_stringify(lineno);
-    output_stringify(lineno());
-    output_stringify(null);
-    output_stringify(undefined);
-    output_stringify("345");
-    output_stringify(true);
+    debuginfo(2);
+
+    stringify.dir(obj);
+
+    stringify.dir({});
+
+    var l = stringify(lineno);
+    console.log(l);
+
+    var f = stringify(lineno());
+    console.log(f);
+}
+
+
+execjs macrodir + @"\jsmode_modules\require.js";
+
+js {
+    var Dump = require("stringify");
+    var o = Dump.stringify(null);
+    console.log(o);
+
+    Dump.dir(undefined);
+    Dump.dir("345");
+    Dump.dir(true);
 
     var obj3 = {
         f : obj3
     }
 
-    output_stringify(obj3);
-
-    // output_stringify(hidemaruGlobal);
-
+    Dump.dir(obj3);
 }
