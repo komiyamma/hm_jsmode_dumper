@@ -1,4 +1,4 @@
-﻿execjs macrodir + @"\jsmode_modules\stringify.js";
+﻿execjs macrodir + @"\jsmode_modules\dumper.js";
 js {
 
     var obj = {
@@ -14,14 +14,14 @@ js {
 
     debuginfo(2);
 
-    stringify.dir(obj);
+    Dumper.dir(obj);
 
-    stringify.dir({});
+    Dumper.dir({});
 
-    var l = stringify(lineno);
+    var l = Dumper.stringify(lineno);
     console.log(l);
 
-    var f = stringify(lineno());
+    var f = Dumper.stringify(lineno());
     console.log(f);
 }
 
@@ -29,17 +29,17 @@ js {
 execjs macrodir + @"\jsmode_modules\require.js";
 
 js {
-    var Dump = require("stringify");
-    var o = Dump.stringify(null);
+    var Dumper = require("dumper");
+    var o = Dumper.stringify(null);
     console.log(o);
 
-    Dump.dir(undefined);
-    Dump.dir("345");
-    Dump.dir(true);
+    Dumper.dir(undefined);
+    Dumper.dir("345");
+    Dumper.dir(true);
 
     var obj3 = {
         f : obj3
     }
 
-    Dump.dir(obj3);
+    Dumper.dir(obj3);
 }
