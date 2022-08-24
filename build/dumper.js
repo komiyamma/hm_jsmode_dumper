@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * stringify v1.0.3
+ * dumper v1.0.3
  */
 (function () {
     var guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";

@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * stringify v1.0.3
+ * dumper v1.0.3
  */
 
 declare var module: any

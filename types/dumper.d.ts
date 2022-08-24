@@ -18,6 +18,7 @@ declare namespace Dumper {
      * 
      * @param space
      * インデントのスペース数。     
+     * 省略した場合は2となる。
      * 文字列で指定した場合は、深度分が該当の文字列でインデントされる。
      * 
      * @example
@@ -36,7 +37,7 @@ declare namespace Dumper {
      * @returns
      * 指定のオブジェクトや値を文字列化したもの
      */
-    declare function stringify(obj: any, space: number|string = 2): string;
+    function stringify(obj: any, space: number|string): string;
 
 
     /**
@@ -49,6 +50,7 @@ declare namespace Dumper {
      * 
      * @param space
      * インデントのスペース数。     
+     * 省略した場合は、2となる。    
      * 文字列で指定した場合は、深度分が該当の文字列でインデントされる。
      * 
      * @example
@@ -68,5 +70,5 @@ declare namespace Dumper {
      * @returns
      * なし
      */
-    function dir(obj: any, space: number|string = 2): void;
+    function dir(obj: any, space: number|string): void;
 }
