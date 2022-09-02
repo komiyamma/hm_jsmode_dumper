@@ -2,18 +2,19 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * dumper v1.0.3
+ * dumper v1.0.4
  */
 (function () {
     var guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
     var op_dllobj = null;
+    var hidemaruhandlezero = hidemaruGlobal.hidemaruhandle(0); // このタイミングでないと非同期で使えないものとなる
     function output(msg) {
         if (!op_dllobj) {
-            op_dllobj = hidemaru.loadDll(hidemaruGlobal.hidemarudir() + "\\HmOutputPane.dll");
+            op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
         }
         if (op_dllobj) {
             var msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
-            return op_dllobj.dllFunc.Output(hidemaruGlobal.hidemaruhandle(0), msg_replaced);
+            return op_dllobj.dllFunc.Output(hidemaruhandlezero, msg_replaced);
         }
         return false;
     }
