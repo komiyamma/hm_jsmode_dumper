@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * dumper v1.0.4
+ * dumper v1.0.5
  */
 
 declare var module: any
@@ -30,7 +30,7 @@ declare var Dumper: { stringify: any, dir: any, guid: string };
     // 関数の時に、文字列に治す
     function replacer(key: string, value: any) {
         if (typeof value === "function") {
-            return value.toString();
+            return "[fn]:" + value.toString();
         }
         return value;
     }

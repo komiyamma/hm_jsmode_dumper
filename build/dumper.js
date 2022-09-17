@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * dumper v1.0.4
+ * dumper v1.0.5
  */
 (function () {
     var guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
@@ -21,7 +21,7 @@
     // 関数の時に、文字列に治す
     function replacer(key, value) {
         if (typeof value === "function") {
-            return value.toString();
+            return "[fn]:" + value.toString();
         }
         return value;
     }
