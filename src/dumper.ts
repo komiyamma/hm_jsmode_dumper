@@ -4,15 +4,15 @@
  *
  * dumper v1.0.5
  */
+/// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 
 declare var module: any
-declare var console: any;
 declare var Dumper: { stringify: any, dir: any, guid: string };
 
 (function () {
-    var guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
-    var op_dllobj: hidemaru.ILoadDllResult = null;
-    var hidemaruhandlezero = hidemaruGlobal.hidemaruhandle(0); // このタイミングでないと非同期で使えないものとなる
+    const guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
+    let op_dllobj: hidemaru.ILoadDllResult = null;
+    let hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
     function output(msg: string): boolean {
 
         if (!op_dllobj) {
@@ -20,7 +20,7 @@ declare var Dumper: { stringify: any, dir: any, guid: string };
         }
 
         if (op_dllobj) {
-            var msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+            let msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
             return op_dllobj.dllFunc.Output(hidemaruhandlezero, msg_replaced);
         }
 
@@ -36,11 +36,11 @@ declare var Dumper: { stringify: any, dir: any, guid: string };
     }
 
     function _stringify(obj: any, space: number | string = 2): string | undefined {
-        var text: string = "";
+        let text: string = "";
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;
         }
-        var text = JSON.stringify(obj, replacer, space);
+        text = JSON.stringify(obj, replacer, space);
 
         if (text) {
             text = text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");

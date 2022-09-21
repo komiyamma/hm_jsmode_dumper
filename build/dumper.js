@@ -4,10 +4,11 @@
  *
  * dumper v1.0.5
  */
+/// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 (function () {
     var guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
     var op_dllobj = null;
-    var hidemaruhandlezero = hidemaruGlobal.hidemaruhandle(0); // このタイミングでないと非同期で使えないものとなる
+    var hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
     function output(msg) {
         if (!op_dllobj) {
             op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
@@ -31,7 +32,7 @@
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;
         }
-        var text = JSON.stringify(obj, replacer, space);
+        text = JSON.stringify(obj, replacer, space);
         if (text) {
             text = text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
         }
