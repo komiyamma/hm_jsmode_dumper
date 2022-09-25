@@ -7,17 +7,11 @@
 /// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 (function () {
     var guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
-    var op_dllobj = null;
+    var op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
     var hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
     function output(msg) {
-        if (!op_dllobj) {
-            op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
-        }
-        if (op_dllobj) {
-            var msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
-            return op_dllobj.dllFunc.Output(hidemaruhandlezero, msg_replaced);
-        }
-        return false;
+        var msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+        return op_dllobj.dllFunc.Output(hidemaruhandlezero, msg_replaced);
     }
     // 関数の時に、文字列に治す
     function replacer(key, value) {

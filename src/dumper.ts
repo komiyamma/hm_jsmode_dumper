@@ -11,20 +11,11 @@ declare var Dumper: { stringify: any, dir: any, guid: string };
 
 (function () {
     const guid = "{2A86CB06-3ABC-4EFE-A75A-3B028D1B4D72}";
-    let op_dllobj: hidemaru.ILoadDllResult = null;
+    let op_dllobj: hidemaru.ILoadDllResult = hidemaru.loadDll("HmOutputPane.dll");
     let hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
-    function output(msg: string): boolean {
-
-        if (!op_dllobj) {
-            op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
-        }
-
-        if (op_dllobj) {
-            let msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
-            return op_dllobj.dllFunc.Output(hidemaruhandlezero, msg_replaced);
-        }
-
-        return false;
+    function output(msg: string): number {
+        let msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+        return op_dllobj.dllFunc.Output(hidemaruhandlezero, msg_replaced);
     }
 
     // 関数の時に、文字列に治す
